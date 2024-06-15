@@ -1,4 +1,4 @@
-package tacos.entity;
+package tacos;
 
 import lombok.Getter;
 import lombok.Setter;
