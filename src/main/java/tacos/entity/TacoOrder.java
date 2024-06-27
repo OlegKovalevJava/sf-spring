@@ -1,4 +1,4 @@
-package tacos;
+package tacos.entity;
 
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
