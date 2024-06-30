@@ -30,12 +30,18 @@ public class JdbcIngredientRepository implements IngredientRepository {
     public Optional<Ingredient> findById(String id) {
         List<Ingredient> results = jdbcTemplate.query(
                 "select id, name, type from Ingredient where id=?", this::mapRowToIngredient, id);
+
         return results.size() == 0 ? Optional.empty() : Optional.of(results.get(0));
     }
 
     @Override
     public Ingredient save(Ingredient ingredient) {
-        return null;
+        jdbcTemplate.update("insert into Ingredient (id, name, type) values (?, ?, ?)",
+                ingredient.getId(),
+                ingredient.getName(),
+                ingredient.getType().toString());
+
+        return ingredient;
     }
 
     private Ingredient mapRowToIngredient(ResultSet row, int rowNum) throws SQLException {
