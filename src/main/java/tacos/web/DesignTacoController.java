@@ -1,4 +1,4 @@
-package tacos.controller;
+package tacos.web;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -7,13 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import tacos.entity.Ingredient;
-import tacos.entity.Ingredient.Type;
-import tacos.entity.Taco;
-import tacos.entity.TacoOrder;
-import tacos.repo.IngredientRepository;
+import tacos.Ingredient;
+import tacos.Ingredient.Type;
+import tacos.Taco;
+import tacos.TacoOrder;
+import tacos.data.IngredientRepository;
 
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -70,7 +69,8 @@ public class DesignTacoController {
         return "redirect:/orders/current";
     }
 
-    private Iterable<Ingredient> filterByType(Iterable<Ingredient> ingredients, Type type) {
+    private Iterable<Ingredient> filterByType(
+            Iterable<Ingredient> ingredients, Type type) {
         return StreamSupport.stream(ingredients.spliterator(), false)
                 .filter(i -> i.getType().equals(type))
                 .collect(Collectors.toList());

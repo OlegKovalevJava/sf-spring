@@ -1,6 +1,6 @@
-package tacos.repo;
+package tacos.data;
 
-import tacos.entity.Ingredient;
+import tacos.Ingredient;
 
 import java.util.Optional;
 
@@ -11,4 +11,5 @@ public interface IngredientRepository {
     Optional<Ingredient> findById(String id);
 
     Ingredient save(Ingredient ingredient);
+
 }
