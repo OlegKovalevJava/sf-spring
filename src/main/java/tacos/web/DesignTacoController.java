@@ -56,9 +56,7 @@ public class DesignTacoController {
     }
 
     @PostMapping
-    public String processTaco(
-            @Valid Taco taco, Errors errors,
-            @ModelAttribute TacoOrder tacoOrder) {
+    public String processTaco(@Valid Taco taco, Errors errors, @ModelAttribute TacoOrder tacoOrder) {
 
         if (errors.hasErrors()) {
             return "design";
@@ -69,8 +67,7 @@ public class DesignTacoController {
         return "redirect:/orders/current";
     }
 
-    private Iterable<Ingredient> filterByType(
-            Iterable<Ingredient> ingredients, Type type) {
+    private Iterable<Ingredient> filterByType(Iterable<Ingredient> ingredients, Type type) {
         return StreamSupport.stream(ingredients.spliterator(), false)
                 .filter(i -> i.getType().equals(type))
                 .collect(Collectors.toList());
